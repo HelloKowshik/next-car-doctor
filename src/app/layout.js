@@ -5,6 +5,7 @@ import Footer from '@/components/shared/Footer';
 import AuthProvider from '@/services/AuthProvider';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,11 +22,13 @@ export default function RootLayout({ children }) {
     <html lang="en" data-theme='mytheme'>
       <body className={inter.className}>
       <ToastContainer />
+      <Suspense>
       <AuthProvider>
         <NavBar />
         {children}
         <Footer />
       </AuthProvider>  
+      </Suspense>
       </body>  
     </html>
   );

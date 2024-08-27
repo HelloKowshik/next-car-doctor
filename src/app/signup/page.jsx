@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import SocialSignIn from "@/components/shared/SocialSignIn";
 import { toast } from 'react-toastify';
+import { Suspense } from "react";
 
 const SignupPage = () => {
     const handleSignUp = async (e) => {
