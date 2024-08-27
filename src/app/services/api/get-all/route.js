@@ -8,6 +8,6 @@ export const GET = async() =>{
         const services = await servicesCollection.find().toArray();
         return NextResponse.json({services});
     }catch(err){
-        console.log(err);
+        return NextResponse.json({message: err.message});
     }
 };

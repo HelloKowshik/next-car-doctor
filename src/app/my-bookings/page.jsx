@@ -11,13 +11,13 @@ const MyBookingsPage = () => {
     const session = useSession();
     const [bookings, setBookings] = useState([]);
     const loadData = async () => {
-        const res = await fetch(`http://localhost:3000/my-bookings/api/${session?.data?.user?.email}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/my-bookings/api/${session?.data?.user?.email}`);
         const data = await res.json();
         setBookings(data?.myBookings);
     };
 
     const handleDelete = async (id) => {
-        const deletedBooking = await fetch(`http://localhost:3000/my-bookings/api/booking/${id}`, {method: 'DELETE'});
+        const deletedBooking = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/my-bookings/api/booking/${id}`, {method: 'DELETE'});
         const res = await deletedBooking.json();
         if(res.response?.deletedCount > 0){
             toast.success(res?.message);

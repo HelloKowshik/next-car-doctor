@@ -11,7 +11,7 @@ const UpdateBookingPage = ({params}) => {
     const [booking, setBooking] = useState([]);
     const {_id, service_id, title, img, price, phone, address, date } = booking || {};
     const loadBooking = async () => {
-      const bookingData = await fetch(`http://localhost:3000/my-bookings/api/booking/${params.id}`);
+      const bookingData = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/my-bookings/api/booking/${params.id}`);
       const data = await bookingData.json();
       // console.log({data});
       setBooking(data.data);
@@ -25,7 +25,7 @@ const UpdateBookingPage = ({params}) => {
         phone: e.target.phone.value,
         address: e.target.address.value
       };
-      const res = await fetch(`http://localhost:3000/my-bookings/api/booking/${params.id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/my-bookings/api/booking/${params.id}`, {
         method: 'PATCH',
         headers:{
           'content-type': 'application/json'

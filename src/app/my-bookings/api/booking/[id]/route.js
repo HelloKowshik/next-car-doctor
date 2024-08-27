@@ -1,14 +1,15 @@
 import { connectDB } from '@/lib/connectDB';
 import { ObjectId } from 'mongodb';
+import { NextResponse } from 'next/server';
 
 export const DELETE = async(request, {params}) =>{
     const db = await connectDB();
     const bookingsCollection = db.collection('bookings');
     try{
         const res = await bookingsCollection.deleteOne({_id: new ObjectId(params.id)});
-        return Response.json({message: 'Booking Deleted!', response: res});
+        return NextResponse.json({message: 'Booking Deleted!', response: res});
     }catch(err){
-        return Response.json({message: err.message});
+        return NextResponse.json({message: err.message});
     }
 };
 
@@ -26,9 +27,9 @@ export const PATCH = async(request, {params}) =>{
         },    
         {upsert: true}
         );
-        return Response.json({message: 'Booking Updated!', response: res});
+        return NextResponse.json({message: 'Booking Updated!', response: res});
     }catch(err){
-        return Response.json({message: err.message});
+        return NextResponse.json({message: err.message});
     }
 };
 
@@ -37,8 +38,8 @@ export const GET = async(request, {params}) =>{
     const bookingsCollection = db.collection('bookings');
     try{
         const res = await bookingsCollection.findOne({_id: new ObjectId(params.id)});
-        return Response.json({message: 'Booking Found', data: res});
+        return NextResponse.json({message: 'Booking Found', data: res});
     }catch(err){
-        return Response.json({message: err.message});
+        return NextResponse.json({message: err.message});
     }
 };
